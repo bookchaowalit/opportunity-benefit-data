@@ -25,6 +25,7 @@ cli = importlib.import_module(PROJECT.replace("-", "_") + ".cli")
 # Three variants: base, +contract --version v2, +v2 availability windows (benefit).
 CLI_SHA256 = {
     "book-benefit-data": "d7d0837be73c71a51a8427fa37875f592caab83c9f709340cce991300b97e20f",
+    "book-bounty-data": "5b4a7327093da486483dc123db547dde3b5c6c5ce6a4f24be084f06c50e6d998",
     "book-competition-data": "5b4a7327093da486483dc123db547dde3b5c6c5ce6a4f24be084f06c50e6d998",
     "book-creator-program-data": "5b4a7327093da486483dc123db547dde3b5c6c5ce6a4f24be084f06c50e6d998",
     "book-deal-data": "5b4a7327093da486483dc123db547dde3b5c6c5ce6a4f24be084f06c50e6d998",
