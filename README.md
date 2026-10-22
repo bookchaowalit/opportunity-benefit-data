@@ -34,6 +34,7 @@ book-benefit-data validate src/book_benefit_data/demo.json
 python -m unittest discover -s tests -v
 python -m pip install -e ".[dev]"  # pytest + pinned ruff
 ruff check . && python -m pytest -q
+uv sync --frozen --all-extras && uv run mypy  # locked env (uv.lock) as CI installs it
 ```
 
 CI (`.github/workflows/ci.yml`) runs `ruff check`, the offline test suite and a
