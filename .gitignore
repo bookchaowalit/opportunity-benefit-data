@@ -12,3 +12,6 @@ logs/
 credentials/
 .ruff_cache/
 .pytest_cache/
+.coverage
+.coverage.*
+.mypy_cache/

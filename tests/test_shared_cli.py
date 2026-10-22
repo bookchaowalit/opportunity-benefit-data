@@ -17,7 +17,9 @@ from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECT = re.search(r'^name = "([a-z-]+)"$', (ROOT / "pyproject.toml").read_text(encoding="utf-8"), re.M)[1]
+_name = re.search(r'^name = "([a-z-]+)"$', (ROOT / "pyproject.toml").read_text(encoding="utf-8"), re.M)
+assert _name is not None, "pyproject.toml has no project name"
+PROJECT = _name[1]
 cli = importlib.import_module(PROJECT.replace("-", "_") + ".cli")
 
 # Three variants: base, +contract --version v2, +v2 availability windows (benefit).
@@ -50,7 +52,7 @@ def live_demo(host):
 
 class VendoredCliTest(unittest.TestCase):
     def test_cli_matches_the_pinned_shared_copy(self):
-        digest = hashlib.sha256(Path(cli.__file__).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        digest = hashlib.sha256(Path(str(cli.__file__)).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
         self.assertIn(PROJECT, CLI_SHA256)
         siblings = sorted(name for name, pinned in CLI_SHA256.items() if pinned == CLI_SHA256[PROJECT])
         self.assertEqual(
